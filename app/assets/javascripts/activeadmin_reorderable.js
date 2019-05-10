@@ -22,6 +22,7 @@ $.fn.reorderable = function(opts) {
         $rows   = $row.parent().children('tr'),
         $table  = $row.closest('table'),
         $handle = $row.find('.reorder-handle'),
+        token   = $('meta[name=csrf-token]').attr('content'),
         url     = $handle.data('reorder-url'),
         index   = function(i) { return $rows.index(i) + 1; };
 
@@ -44,7 +45,7 @@ $.fn.reorderable = function(opts) {
       $(this).find('.position').text(index($(this)));
     });
 
-    var _post_params = { position: index($row) }
+    var _post_params = { position: index($row), authenticity_token: token }
 
     if ($table.hasClass('habtm')){
 
@@ -54,10 +55,10 @@ $.fn.reorderable = function(opts) {
         var _path_components = _path.split('/'),
             _parent_type = _path_components[2],
             _parent_id = _path_components[3];
-        if ((_parent_type!=null) && (_parent_id!=null)){ 
+        if ((_parent_type!=null) && (_parent_id!=null)){
           _post_params['parent_type']=_parent_type;
           _post_params['parent_id']=_parent_id;
-        } 
+        }
       }
     }
 
