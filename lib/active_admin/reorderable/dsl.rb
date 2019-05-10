@@ -11,7 +11,7 @@ module ActiveAdmin
           _insert_params << params[:parent_id] if params[:parent_id].present?
           #
           resource.insert_at(*_insert_params)
-          render :nothing => true
+          head :ok
         end
 
         member_action(:reorder, :method => :post, &block || body)
