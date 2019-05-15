@@ -62,8 +62,9 @@ $.fn.reorderable = function(opts) {
       }
     }
 
-    $.post(url, _post_params);
-    if ($table.hasClass('habtm')){ window.location.reload(true); }
+    $.post(url, _post_params, function success(_data) {
+      if ($table.hasClass('habtm')) { window.location.reload(true); }
+    });
   }
 
   return this.each(function() {
