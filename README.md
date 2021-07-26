@@ -72,10 +72,26 @@ ActiveAdmin.register Widget do
 end
 ```
 
-***
+## Gem build and Push on github package
 
-<a href="http://code.viget.com">
-  <img src="http://code.viget.com/github-banner.png" alt="Code At Viget">
-</a>
+We start this gem following the bundler way to do it. For more information, please read the [relative doc](https://bundler.io/guides/creating_gem.html).
 
-Visit [code.viget.com](http://code.viget.com) to see more projects from [Viget.](https://viget.com)
+To publish a new package version, developer need to have a minimal configuration and access... as described by the [github official doc about publishing packages](https://docs.github.com/en/packages/guides/configuring-rubygems-for-use-with-github-packages#publishing-a-package).
+
+Please, don't forget to configure your [github credentials shortcut](https://docs.github.com/en/packages/guides/configuring-rubygems-for-use-with-github-packages#authenticating-with-a-personal-access-token) ! :wink:
+
+> you would create or edit a ~/.gem/credentials to include the following, replacing TOKEN with your personal access token.
+```bash
+---
+:github: Bearer TOKEN
+```
+
+### Build and Publish
+
+ - 1/ Change version in version.rb
+ - 2/ run `bundle` (change actual gem version in Gemfile.lock)
+ - 3/ run `gem build` (generate `.gem`)
+ - 4/ run `gem push` if ok to publish it on github package. For example, to push _activeadmin_reorderable-0.0.6.gem_:
+ ```sh
+gem push --key github --host https://rubygems.pkg.github.com/effy-tech activeadmin_reorderable-0.0.6.gem
+ ```
