@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split($/)
 
-  s.add_development_dependency 'activeadmin', '~> 0.6'
+  s.add_development_dependency 'activeadmin', '~> 3.2.2'
 end
